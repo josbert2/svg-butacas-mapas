@@ -7,15 +7,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Import } from "lucide-react"
 import * as XLSX from "xlsx"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Label } from "@/components/ui/label"
 
 interface SeatMapImportProps {
   onImport: (data: { seatMap: Record<string, any>; gridSize: { rows: number; cols: number } }) => void
   activeSection: string
+  sections: Array<{ id: string; name: string; color: string }>
 }
 
-export function SeatMapImport({ onImport, activeSection }: SeatMapImportProps) {
+export function SeatMapImport({ onImport, activeSection, sections }: SeatMapImportProps) {
   const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [selectedSection, setSelectedSection] = useState(activeSection)
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null)
@@ -52,7 +56,7 @@ export function SeatMapImport({ onImport, activeSection }: SeatMapImportProps) {
           // If cell value is 1, add a seat
           if (value === 1) {
             seatMap[`${rowIndex}-${colIndex}`] = {
-              section: activeSection,
+              section: selectedSection,
               type: "seat",
             }
           }
@@ -89,6 +93,24 @@ export function SeatMapImport({ onImport, activeSection }: SeatMapImportProps) {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
+        <div className="space-y-2">
+            <Label htmlFor="section-select">Asignar asientos a sección</Label>
+              <Select value={selectedSection} onValueChange={setSelectedSection}>
+                <SelectTrigger id="section-select">
+                  <SelectValue>{sections.find((s) => s.id === selectedSection)?.name || "Seleccionar sección"}</SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  {sections.map((section) => (
+                    <SelectItem key={section.id} value={section.id}>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: section.color }} />
+                        {section.name}
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".xlsx,.xls" className="hidden" />
       
 

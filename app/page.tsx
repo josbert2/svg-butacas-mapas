@@ -419,7 +419,7 @@ export default function Home() {
           </Tabs>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 scroll-y-auto overflow-auto max-h-[80%]">
           <SeatMapControls
             gridSize={gridSize}
             gridGap={gridGap}
@@ -427,7 +427,7 @@ export default function Home() {
             onGridGapChange={setGridGap}
           />
 
-          <SeatMapImport onImport={handleImport} activeSection={activeSection} />
+          <SeatMapImport onImport={handleImport} activeSection={activeSection} sections={sections} />
 
           <SectionManager
             sections={sections}

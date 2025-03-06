@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={nunito.className} data-theme="cupcake">
-      <body>{children}</body>
+      <body className='h-screen overflow-y-hidden'>{children}</body>
     </html>
   )
 }
