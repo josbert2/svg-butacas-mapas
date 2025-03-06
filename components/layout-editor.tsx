@@ -2105,7 +2105,7 @@ return (
       </div>
 
       {/* Properties panel */}
-      <div className="w-80 border-l bg-muted/10 overflow-y-auto">
+      <div className="w-80 rounded-md overflow-y-auto h-[700px] ">  
         <div className="p-4 space-y-6">
           {/* Shape properties */}
           <div className="space-y-4">
@@ -2114,11 +2114,11 @@ return (
               Shape Properties
             </h3>
 
-            <div className="space-y-3 bg-background rounded-md p-3 border">
+            <div className="space-y-3 shadow !bg-base-100 border-base-300 rounded-md  p-3 border">
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="color" className="text-xs">
-                    Fill Color
+                    Relleno color
                   </Label>
                   <div
                     className="w-full h-6 rounded-md border mb-1"
@@ -2144,7 +2144,7 @@ return (
                         setColor(e.target.value)
                       }
                     }}
-                    className="w-full h-8"
+                    className="w-full h-8 input"
                   />
                 </div>
                 <div className="space-y-1">
@@ -2156,7 +2156,7 @@ return (
                     id="border-radius"
                     value={borderRadius}
                     onChange={(e) => setBorderRadius(Number(e.target.value))}
-                    className="w-full"
+                    className="w-full input"
                     min="0"
                     max="100"
                   />
@@ -2166,7 +2166,7 @@ return (
               <div className="space-y-1 pt-2">
                 <div className="flex justify-between">
                   <Label htmlFor="path-smoothing" className="text-xs">
-                    Path Smoothing
+                    Suavizado de ruta
                   </Label>
                   <span className="text-xs text-muted-foreground">{pathSmoothing}%</span>
                 </div>
@@ -2276,13 +2276,13 @@ return (
           <div className="space-y-4">
             <h3 className="text-sm font-medium flex items-center">
               <Type className="h-4 w-4 mr-2" />
-              Text Properties
+              Propiedades de texto
             </h3>
 
-            <div className="space-y-3 bg-background rounded-md p-3 border">
+            <div className="space-y-3 !bg-base-100 border-base-300 rounded-md p-3 border">
               <div className="space-y-1">
                 <Label htmlFor="text-input" className="text-xs">
-                  Text Content
+                  Texto en Shape
                 </Label>
                 <Input
                   id="text-input"
@@ -2294,15 +2294,15 @@ return (
                       setTextInput(e.target.value)
                     }
                   }}
-                  className="w-full"
-                  placeholder="Enter text..."
+                  className="w-full input"
+                  placeholder="Ingresa el texto aquí"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <div className="space-y-1">
                   <Label htmlFor="text-color" className="text-xs">
-                    Text Color
+                    Color de texto
                   </Label>
                   <div
                     className="w-6 h-6 rounded-md border"
@@ -2325,12 +2325,12 @@ return (
                         setTextColor(e.target.value)
                       }
                     }}
-                    className="w-full p-1 h-8"
+                    className="w-full p-1 h-8 input"
                   />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="text-font-size" className="text-xs">
-                    Font Size
+                    Tamaño de fuente
                   </Label>
                   <Input
                     type="number"
@@ -2348,7 +2348,7 @@ return (
                         setFontSize(size)
                       }
                     }}
-                    className="w-full"
+                    className="w-full input"
                     min="8"
                     max="72"
                   />
@@ -2360,26 +2360,26 @@ return (
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1">
                       <Label htmlFor="text-offset-x" className="text-xs">
-                        Text X Offset
+                        Desplazamiento X del Texto
                       </Label>
                       <Input
                         type="number"
                         id="text-offset-x"
                         value={(shapes.find((s) => s.id === selectedShape) as Shape)?.textOffsetX || 0}
                         onChange={(e) => updateSelectedTextOffset("x", Number(e.target.value))}
-                        className="w-full"
+                        className="w-full input"
                       />
                     </div>
                     <div className="space-y-1">
                       <Label htmlFor="text-offset-y" className="text-xs">
-                        Text Y Offset
+                        Desplazamiento Y del Texto
                       </Label>
                       <Input
                         type="number"
                         id="text-offset-y"
                         value={(shapes.find((s) => s.id === selectedShape) as Shape)?.textOffsetY || 0}
                         onChange={(e) => updateSelectedTextOffset("y", Number(e.target.value))}
-                        className="w-full"
+                        className="w-full input"
                       />
                     </div>
                   </div>
@@ -2387,13 +2387,13 @@ return (
                   <div className="flex flex-col gap-2 pt-1">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="text-handles" className="text-xs">
-                        Show Text Handles
+                        Mostrar Manejadores de Texto (Experimental)
                       </Label>
                       <Switch id="text-handles" checked={showTextHandles} onCheckedChange={setShowTextHandles} />
                     </div>
                     <div className="flex items-center justify-between">
                       <Label htmlFor="constrain-text" className="text-xs">
-                        Constrain to Shape
+                        Constrain to Shape (Experimental) 
                       </Label>
                       <Switch
                         id="constrain-text"
@@ -2426,10 +2426,10 @@ return (
                 <path d="M12 8v4" />
                 <path d="M12 16h.01" />
               </svg>
-              Custom Attributes
+              Atributos
             </h3>
 
-            <div className="space-y-3 bg-background rounded-md p-3 border">
+            <div className="space-y-3 !bg-base-100 border-base-300 rounded-md p-3 border">
               <div className="space-y-1">
                 <Label htmlFor="custom-id" className="text-xs">
                   ID
@@ -2449,7 +2449,7 @@ return (
                       setCustomAttributes({ ...customAttributes, id: e.target.value })
                     }
                   }}
-                  className="w-full"
+                  className="w-full input"
                   placeholder="vip"
                 />
               </div>
@@ -2472,7 +2472,7 @@ return (
                       setCustomAttributes({ ...customAttributes, dataName: e.target.value })
                     }
                   }}
-                  className="w-full"
+                  className="w-full input"
                   placeholder="vip"
                 />
               </div>
@@ -2495,7 +2495,7 @@ return (
                       setCustomAttributes({ ...customAttributes, dataNombre: e.target.value })
                     }
                   }}
-                  className="w-full"
+                  className="w-full input"
                   placeholder="vip"
                 />
               </div>
