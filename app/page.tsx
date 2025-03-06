@@ -351,7 +351,14 @@ export default function Home() {
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Butacas Edición </h1>
+      <div className="flex items-center">
+        <h1 className="text-3xl font-bold mb-6">Butacas Edición </h1>
+        <div className="ml-auto">
+          <a className="btn btn-neutral" href="/layout-editor">
+            Crear Mapa de zonas
+          </a>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
